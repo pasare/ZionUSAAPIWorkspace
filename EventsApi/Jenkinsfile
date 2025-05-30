@@ -1,0 +1,136 @@
+def deployFiles(configName, remoteDirectory, sourceFiles) {
+  ftpPublisher alwaysPublishFromMaster: true,
+    continueOnError: false,
+    failOnError: true,
+    masterNodeName: "",
+    paramPublish: null,
+    publishers: [
+      [
+        configName: configName,
+        transfers: [
+          [
+            asciiMode: false,
+            cleanRemote: false,
+            excludes: "",
+            flatten: true,
+            makeEmptyDirs: false,
+            noDefaultExcludes: false,
+            patternSeparator: "[, ]+",
+            remoteDirectory: remoteDirectory,
+            remoteDirectorySDF: false,
+            sourceFiles: sourceFiles
+          ]
+        ],
+        usePromotionTimestamp: false,
+        useWorkspaceInPromotion: false,
+        verbose: true
+      ]
+    ]
+}
+
+def getCommandOutput(cmd) {
+  if (isUnix()) {
+    return sh(returnStdout:true , script: '#!/bin/sh -e\n' + cmd).trim()
+  } else {
+    stdout = bat(returnStdout:true , script: cmd).trim()
+    result = stdout.readLines().drop(1).join(" ")
+    return result
+  }
+}
+
+def runCommand(cmd) {
+  if (isUnix()) {
+    sh(script: cmd)
+  } else {
+    bat(script: cmd)
+  }
+}
+
+stage("Build (Events)") {
+  script {
+    runCommand("gradle clean build --warn")
+  }
+}
+
+stage("Deploy (Events)") {
+  script {
+    if (env.BRANCH_NAME == "development") {
+      try {
+        if (isUnix()) {
+
+        } else {
+          bat "C:/inetpub/wwwroot/API/EventsApi/EventsApi.exe stop"
+        }
+        sleep(10)
+      } catch (Exception e) {
+        echo "Could not stop the Events Service";
+      }
+
+      if (isUnix()) {
+
+      } else {
+        fileOperations([
+          fileCopyOperation(
+            excludes: "",
+            flattenFiles: true,
+            includes: "build/libs/EventsApi.jar",
+            targetLocation: "C:/inetpub/wwwroot/API/EventsApi"
+          ),
+          fileCopyOperation(
+            excludes: "",
+            flattenFiles: true,
+            includes: "build/resources/main/web.config",
+            targetLocation: "C:/inetpub/wwwroot/API/EventsApi"
+          ),
+          fileCopyOperation(
+            excludes: "",
+            flattenFiles: true,
+            includes: "build/resources/main/jenkins/EventsApi.exe",
+            targetLocation: "C:/inetpub/wwwroot/API/EventsApi"
+          )
+        ])
+
+        fileOperations([
+          fileCopyOperation(
+            excludes: "",
+            flattenFiles: true,
+            includes: "build/resources/main/jenkins/test/EventsApi.xml",
+            targetLocation: "C:/inetpub/wwwroot/API/EventsApi"
+          )
+        ])
+      }
+
+      if (isUnix()) {
+
+      } else {
+        bat "C:/inetpub/wwwroot/API/EventsApi/EventsApi.exe start"
+      }
+    }
+
+    if (env.BRANCH_NAME == "master") {
+      deployFiles(
+        "Dev to Prod FTP",
+        "./buildEventsAPIFiles",
+        (
+          "build/resources/main/jenkins/production/EventsApi.xml, " +
+          "build/libs/EventsApi.jar, " +
+          "build/resources/main/web.config, " +
+          "build/resources/main/jenkins/EventsApi.exe"
+        )
+      )
+    }
+
+    if (env.BRANCH_NAME == "master-wlu") {
+      deployFiles(
+        "Dev to Prod FTP WLU",
+        "./buildEventsAPIFiles",
+        (
+          "build/resources/main/jenkins/production-wlu/EventsApi.xml, " +
+          "build/libs/EventsApi.jar, " +
+          "build/resources/main/web.config, " +
+          "build/resources/main/jenkins/EventsApi.exe"
+        )
+      )
+    }
+  }
+}

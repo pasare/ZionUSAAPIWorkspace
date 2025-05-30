@@ -1,0 +1,163 @@
+alter TABLE accesses NOCHECK CONSTRAINT all;
+alter TABLE church_types NOCHECK CONSTRAINT all;
+ALTER table roles NOCHECK CONSTRAINT ALL;
+ALTER table states NOCHECK CONSTRAINT all;
+alter table churches NOCHECK CONSTRAINT all;
+alter TABLE church_organization NOCHECK CONSTRAINT all;
+alter TABLE church_pictures NOCHECK CONSTRAINT All;
+alter TABLE groups NOCHECK CONSTRAINT ALL;
+alter TABLE teams NOCHECK CONSTRAINT ALL;
+alter table users NOCHECK CONSTRAINT ALL;
+ALTER TABLE user_pictures NOCHECK CONSTRAINT ALL;
+alter TABLE transfer_requests NOCHECK CONSTRAINT all;
+alter TABLE transfer_request_history NOCHECK CONSTRAINT ALL;
+ALTER TABLE titles NOCHECK CONSTRAINT ALL;
+ALTER TABLE user_profiles NOCHECK CONSTRAINT ALL;
+ALTER TABLE user_profile_categories NOCHECK CONSTRAINT ALL;
+ALTER TABLE user_profile_information NOCHECK CONSTRAINT ALL;
+
+
+
+
+-- Migration of members table from Profile to user_profiles in Zionusamanagement
+--Insert into user_profile members with zionusa accounts
+-- Copy this Table over from test... Test_zionusa_account_profile_2 is a table that maps users with members table from profile for members with zionusa accounts.
+
+
+Insert into user_profiles (gospel_aspirations, gospel_plan, company, certifications, desired_field, job_title, occupation, professional_licenses, type_of_business, bachelors_degree, bachelors_school, masters_degree, masters_school, doctorate_degree, doctorate_school, children, ethnicity, hobbies, personality, created_date, updated_date, church_id, user_id)
+Select GospelAspirations, GospelPlan, Company, Certifications, DesiredField, JobTitle, Occupation, Licenses, TypeOfBusiness, Bachelors, BachelorsSchool, Masters, MastersSchool, Doctor, DoctorSchool, ISNULL(children, 0), Ethnicity, Hobbies, Personality, CreateDate, UpdateDate, ChurchId, user_id
+from test_zionusa_account_profile_2
+
+-- Insert into user_profiles members who do not have zionusa accounts and not already in user_profiles
+-- Table NEW_USER_MEMBERS_API_3  must be copied over from test... It filters duplicates from.
+
+
+ Insert into user_profiles (gospel_aspirations, gospel_plan, company, certifications, desired_field, job_title, occupation, professional_licenses, type_of_business, bachelors_degree, bachelors_school, masters_degree, masters_school, doctorate_degree, doctorate_school, children, ethnicity, hobbies, personality, created_date, updated_date, church_id, user_id)
+Select GospelAspirations, GospelPlan, Company, Certifications, DesiredField, JobTitle, Occupation, Licenses, TypeOfBusiness, Bachelors, BachelorsSchool, Masters, MastersSchool, Doctor, DoctorSchool, ISNULL(children, 0), Ethnicity, Hobbies, Personality, CreateDate, UpdateDate, ChurchId, user_id
+from new_users_members_api_3
+
+-- copy user_profile_info_member over from test for migration
+ -- Migration of Member Church Activities
+
+ Insert into user_profile_information (profile_id, category_id, information)
+Select u.profile_id, '1', m.name
+from MemberChurchActivities_profile m
+join user_profile_info_member u
+on m.MemberId = u.id;
+
+ -- Migration of Member Church Positions
+ Insert into user_profile_information (profile_id, category_id, information)
+Select u.profile_id, '2', m.name
+from MemberChurchPosition_profile m
+join user_profile_info_member u
+on m.MemberId = u.id;
+
+-- Migration of Member Service Duties
+
+
+Insert into user_profile_information (profile_id, category_id, information)
+Select u.profile_id, '3', m.name
+from MemberServiceDuties_profile m
+join user_profile_info_member u
+on m.MemberId = u.id;
+
+-- Migration of Member Professional Skills
+-- Make sure source date columns meet datatype specifications
+
+
+Insert into user_profile_information (profile_id, category_id, information, start_date, end_date)
+Select u.profile_id, '4', m.name, cast(startMonth as varchar(2)) +'-'+ '1'+'-'+ cast(StartYear as varchar(4)) as StartDate,  cast(EndMonth as varchar(2)) +'-'+ '1'+'-'+ cast(EndYear as Varchar(4)) as EndDate
+from MemberSkills_profile m
+join user_profile_info_member u
+on m.MemberId = u.id;
+
+
+-- Migration of Technical Skills
+-- Make sure source date columns meet datatype specifications
+
+
+Insert into user_profile_information (profile_id, category_id, information, start_date, end_date)
+Select u.profile_id, '5', name, cast(startMonth as varchar(2)) +'-'+ '1'+'-'+ cast(StartYear as varchar(4)) as StartDate,  cast(EndMonth as varchar(2)) +'-'+ '1'+'-'+ cast(EndYear as Varchar(4)) as EndDate
+from MemberSoftwareUsages_profile m
+join user_profile_info_member u
+on m.MemberId = u.id;
+
+
+-- Migration of Member Talents
+-- Make sure source date columns meet datatype specifications
+
+Insert into user_profile_information (profile_id, category_id, information, start_date, end_date)
+Select u.profile_id, '6', name, cast(startMonth as varchar(2)) +'-'+ '1'+'-'+ cast(StartYear as varchar(4)) as StartDate,  cast(EndMonth as varchar(2)) +'-'+ '1'+'-'+ cast(EndYear as Varchar(4)) as EndDate
+from MemberTalents_profile m
+join user_profile_info_member u
+on m.MemberId = u.id;
+
+
+-- Migration of pictures into user_pictures
+-- Please copy Picture_users_members_profile_5 table over from test for migration
+
+
+
+ insert into user_pictures  (user_id, name, description, picture_url)
+select user_id, name, description, picture_url
+from picture_users_members_profile_5
+
+
+-- Update Users table to populate with new picture_id
+ update users
+ set users.picture_id  = (select id
+ from user_pictures where user_id = users.id)
+
+
+
+
+alter table churches CHECK CONSTRAINT all;
+alter table church_pictures CHECK CONSTRAINT ALL;
+alter TABLE groups CHECK CONSTRAINT ALL
+alter TABLE teams CHECK CONSTRAINT ALL;
+alter table users CHECK CONSTRAINT ALL;
+alter table user_pictures CHECK CONSTRAINT ALL;
+ALTER table states CHECK CONSTRAINT all;
+alter TABLE accesses CHECK CONSTRAINT all;
+alter TABLE church_types CHECK CONSTRAINT all;
+ALTER table roles CHECK CONSTRAINT ALL;
+ALTER TABLE titles CHECK CONSTRAINT ALL
+alter TABLE transfer_requests CHECK CONSTRAINT ALL;
+alter TABLE transfer_request_history CHECK CONSTRAINT ALL;
+alter table user_profiles CHECK CONSTRAINT ALL;
+alter table user_profile_categories CHECK CONSTRAINT ALL;
+alter table user_profile_information CHECK CONSTRAINT ALL;
+
+--- Checks to validate the user data
+-- Check users title with appropriate gender
+select * from users
+where gender = 'f'
+and title_id  not in (3,4,6,8);
+
+select * from users
+where gender = 'm'
+and title_id  not in (1,2,4,5,7);
+
+--- change all male users without appropriate title to Brother
+update users
+set title_id = 7
+where gender= 'M'
+and title_id not in (1,2,4,5,7);
+
+
+--- change all female users without appropriate title to Sister
+update users
+set title_id = 8
+where gender= 'F'
+and title_id not in (3,4,6,8)
+
+
+--Uniquely identify user_pictures  with to eliminate duplicates by unique constraint on user_id and type_id
+alter table user_pictures
+    add constraint uq_user_picture_id_typeid UNIQUE (user_id, type_id);
+
+
+--Uniquely identify Church_pictures  with to eliminate duplicates by unique constraint on user_id and type_id
+
+alter table Church_pictures
+    add constraint uq_user_picture_id_typeid UNIQUE (user_id, type_id);

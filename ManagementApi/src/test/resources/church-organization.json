@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "churchId": 40,
+    "organizationData": "Mock Data 1"
+  },
+  {
+    "id": 2,
+    "churchId": 41,
+    "organizationData": "Mock Data 2"
+  },
+  {
+    "id": 3,
+    "churchId": 42,
+    "organizationData": "Mock Data 3"
+  }
+]

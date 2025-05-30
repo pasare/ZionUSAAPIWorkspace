@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "azure.storage.connection-string",
+      "type": "java.lang.String",
+      "description": "Description for azure.storage.connection-string."
+    },
+    {
+      "name": "notification.app.id",
+      "type": "java.lang.String",
+      "description": "Description for notification.app.id."
+    },
+    {
+      "name": "azure.storage.url",
+      "type": "java.lang.String",
+      "description": "Description for azure.storage.url."
+    },
+    {
+      "name": "onesignal.admin.app.id",
+      "type": "java.lang.String",
+      "description": "Description for onesignal.admin.app.id."
+    }
+  ]
+}

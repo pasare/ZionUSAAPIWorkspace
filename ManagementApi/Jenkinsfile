@@ -1,0 +1,136 @@
+def deployFiles(configName, remoteDirectory, sourceFiles) {
+  ftpPublisher alwaysPublishFromMaster: true,
+    continueOnError: false,
+    failOnError: true,
+    masterNodeName: "",
+    paramPublish: null,
+    publishers: [
+      [
+        configName: configName,
+        transfers: [
+          [
+            asciiMode: false,
+            cleanRemote: false,
+            excludes: "",
+            flatten: true,
+            makeEmptyDirs: false,
+            noDefaultExcludes: false,
+            patternSeparator: "[, ]+",
+            remoteDirectory: remoteDirectory,
+            remoteDirectorySDF: false,
+            sourceFiles: sourceFiles
+          ]
+        ],
+        usePromotionTimestamp: false,
+        useWorkspaceInPromotion: false,
+        verbose: true
+      ]
+    ]
+}
+
+def getCommandOutput(cmd) {
+  if (isUnix()) {
+    return sh(returnStdout:true , script: '#!/bin/sh -e\n' + cmd).trim()
+  } else {
+    stdout = bat(returnStdout:true , script: cmd).trim()
+    result = stdout.readLines().drop(1).join(" ")
+    return result
+  }
+}
+
+def runCommand(cmd) {
+  if (isUnix()) {
+    sh(script: cmd)
+  } else {
+    bat(script: cmd)
+  }
+}
+
+stage("Build (Management)") {
+  script {
+    runCommand("gradle clean build --warn")
+  }
+}
+
+stage("Deploy (Management)") {
+  script {
+    if (env.BRANCH_NAME == "development") {
+      try {
+        if (isUnix()) {
+
+        } else {
+          bat "C:/inetpub/wwwroot/API/ManagementApi/ManagementApi.exe stop"
+        }
+        sleep(10)
+      } catch (Exception e) {
+        echo "Could not stop the Management Service";
+      }
+
+      if (isUnix()) {
+
+      } else {
+        fileOperations([
+          fileCopyOperation(
+            excludes: "",
+            flattenFiles: true,
+            includes: "build/libs/ManagementApi.jar",
+            targetLocation: "C:/inetpub/wwwroot/API/ManagementApi"
+          ),
+          fileCopyOperation(
+            excludes: "",
+            flattenFiles: true,
+            includes: "build/resources/main/web.config",
+            targetLocation: "C:/inetpub/wwwroot/API/ManagementApi"
+          ),
+          fileCopyOperation(
+            excludes: "",
+            flattenFiles: true,
+            includes: "build/resources/main/jenkins/ManagementApi.exe",
+            targetLocation: "C:/inetpub/wwwroot/API/ManagementApi"
+          )
+        ])
+
+        fileOperations([
+          fileCopyOperation(
+            excludes: "",
+            flattenFiles: true,
+            includes: "build/resources/main/jenkins/test/ManagementApi.xml",
+            targetLocation: "C:/inetpub/wwwroot/API/ManagementApi"
+          )
+        ])
+      }
+
+      if (isUnix()) {
+
+      } else {
+        bat "C:/inetpub/wwwroot/API/ManagementApi/ManagementApi.exe start"
+      }
+    }
+
+    if (env.BRANCH_NAME == "master") {
+      deployFiles(
+        "Dev to Prod FTP",
+        "./buildManagementAPIFiles",
+        (
+          "build/resources/main/jenkins/production/ManagementApi.xml, " +
+          "build/libs/ManagementApi.jar, " +
+          "build/resources/main/web.config, " +
+          "build/resources/main/jenkins/ManagementApi.exe"
+        )
+      )
+    }
+
+    if (env.BRANCH_NAME == "master-wlu") {
+      deployFiles(
+        "Dev to Prod FTP WLU",
+        "./buildManagementAPIFiles",
+        (
+          "build/resources/main/jenkins/production-wlu/ManagementApi.xml, " +
+          "build/libs/ManagementApi.jar, " +
+          "build/resources/main/web.config, " +
+          "build/resources/main/jenkins/ManagementApi.exe"
+        )
+      )
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service>
+    <id>ZionUSABibleStudyApi</id>
+    <name>BibleStudyApi</name>
+    <description>ZionUSA BibleStudy Api Jar</description>
+    <executable>java</executable>
+    <arguments>-jar -Dspring.profiles.active=production "C:/inetpub/wwwroot/API/ZionUSABibleStudyApi/BibleStudyApi.jar"</arguments>
+    <logmode>rotate</logmode>
+</service>

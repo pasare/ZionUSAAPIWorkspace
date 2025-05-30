@@ -1,0 +1,208 @@
+[
+  {
+    "id": 1,
+    "parentChurchId": 2,
+    "leaderId": null,
+    "typeId": 1,
+    "name": "Test Church 1",
+    "address": "123 Test Address",
+    "phone": "231-131-1453",
+    "email": "testemail@email.com",
+    "city": "Fake City",
+    "stateId": "1",
+    "postalCode": "12550",
+    "archived": false,
+    "type": {
+      "id": 1,
+      "name": "Temple",
+      "sortOrder": 1
+    },
+    "leader": {
+      "id": 2,
+      "teamId": 3,
+      "accessId": 4,
+      "roleId": 4,
+      "titleId": 8,
+      "firstName": "Patrick",
+      "lastName": "User",
+      "middleName": "Test",
+      "displayName": "P. Patrick T. User",
+      "username": "patrick.asare@zionusa.org",
+      "gender": "M",
+      "archived": false,
+      "enabled": true,
+      "access": {
+        "id": 5,
+        "name": "Member",
+        "sortOrder": 5
+      },
+      "role": {
+        "id": 5,
+        "name": "Member",
+        "sortOrder": 5
+      },
+      "title": {
+        "id": 8,
+        "name": "Member",
+        "displayName": "B.",
+        "sortOrder": 8
+      }
+    },
+    "groups": [
+      {
+        "id": 3,
+        "churchId": 1,
+        "leaderId": null,
+        "name": "Test Group 1",
+        "churchGroup": true,
+        "archived": false,
+        "effectiveDate": "2017-06-17",
+        "leader": null,
+        "teams": [
+          {
+            "id": 2,
+            "groupId": 3,
+            "leaderId": null,
+            "name": "Team1",
+            "churchTeam": true,
+            "effectiveDate": "2017-06-19",
+            "leader": null,
+            "members": []
+          },
+          {
+            "id": 3,
+            "groupId": 3,
+            "leaderId": null,
+            "name": "Team2",
+            "churchTeam": false,
+            "effectiveDate": "2017-06-19",
+            "leader": null,
+            "members": [
+              {
+                "id": 2,
+                "teamId": 3,
+                "accessId": 4,
+                "roleId": 4,
+                "titleId": 8,
+                "firstName": "Patrick",
+                "lastName": "User",
+                "middleName": "Test",
+                "displayName": "P. Patrick T. User",
+                "username": "patrick.asare@zionusa.org",
+                "gender": "M",
+                "archived": false,
+                "enabled": true,
+                "access": {
+                  "id": 4,
+                  "name": "Member",
+                  "sortOrder": 4
+                },
+                "role": {
+                  "id": 5,
+                  "name": "Member",
+                  "sortOrder": 5
+                },
+                "title": {
+                  "id": 8,
+                  "name": "Member",
+                  "displayName": "B.",
+                  "sortOrder": 1
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "branches": [
+      {
+        "id": 2,
+        "parentChurchId": 1,
+        "leaderId": null,
+        "typeId": 2,
+        "name": "Test Church 1",
+        "address": "123 Test Address",
+        "phone": null,
+        "email": null,
+        "city": null,
+        "stateId": "1",
+        "postalCode": null,
+        "type": {
+          "id": 2,
+          "name": "Church",
+          "sortOrder": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "parentChurchId": 1,
+    "leaderId": null,
+    "typeId": 2,
+    "name": "Test Church 1",
+    "address": "123 Test Address",
+    "phone": null,
+    "email": null,
+    "city": null,
+    "stateId": "1",
+    "postalCode": null,
+    "archived": false,
+    "type": {
+      "id": 2,
+      "name": "Church",
+      "sortOrder": 2
+    }
+  },
+  {
+    "id": 3,
+    "parentChurchId": null,
+    "leaderId": null,
+    "typeId": 3,
+    "name": "Test Church 1",
+    "address": "123 Test Address",
+    "phone": null,
+    "email": null,
+    "city": null,
+    "stateId": "1",
+    "postalCode": null,
+    "archived": false,
+    "type": {
+      "id": 3,
+      "name": "House Church",
+      "sortOrder": 3
+    },
+    "groups": [
+      {
+        "id": 3,
+        "churchId": 1,
+        "leaderId": null,
+        "name": "Test Group 1",
+        "churchGroup": false,
+        "archived": false,
+        "effectiveDate": "2017-06-17",
+        "leader": null,
+        "teams": []
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "parentChurchId": 2,
+    "leaderId": null,
+    "typeId": 4,
+    "name": "Test Church 1",
+    "address": "123 Test Address",
+    "phone": null,
+    "email": null,
+    "city": null,
+    "stateId": "2",
+    "postalCode": null,
+    "archived": false,
+    "type": {
+      "id": 4,
+      "name": "Study Location",
+      "sortOrder": 4
+    }
+  }
+]

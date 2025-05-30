@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Management (WLU)" type="SpringBootApplicationConfigurationType"
+                 factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="production-wlu, validate"/>
+    <module name="org.zionusa.zionusa-api-workspace.ManagementApi.main"/>
+    <option name="SHORTEN_COMMAND_LINE" value="MANIFEST"/>
+    <option name="SPRING_BOOT_MAIN_CLASS" value="org.zionusa.management.ManagementApiApplication"/>
+    <option name="VM_PARAMETERS" value="-Xmx512m"/>
+    <method v="2">
+      <option name="Make" enabled="true"/>
+    </method>
+  </configuration>
+</component>

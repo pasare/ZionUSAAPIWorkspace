@@ -1,0 +1,107 @@
+[
+  {
+    "id": 2,
+    "teamId": 3,
+    "accessId": 4,
+    "roleId": 4,
+    "titleId": 8,
+    "firstName": "Patrick",
+    "lastName": "User",
+    "middleName": "Test",
+    "username": "patrick.asare@zionusa.org",
+    "gender": "M",
+    "archived": false,
+    "enabled": true,
+    "theologicalStudent": false,
+    "recoveryEmail": null,
+    "access": {
+      "id": 5,
+      "name": "Member",
+      "sortOrder": 5
+    },
+    "role": {
+      "id": 5,
+      "name": "Member",
+      "sortOrder": 5
+    },
+    "title": {
+      "id": 8,
+      "name": "Member",
+      "displayName": "B.",
+      "sortOrder": 8
+    },
+    "gaGrader": false,
+    "teacher": false,
+    "readyGrader": false
+  },
+  {
+    "id": 3,
+    "teamId": 4,
+    "accessId": 4,
+    "roleId": 4,
+    "titleId": 8,
+    "firstName": "Jim",
+    "lastName": "Jones",
+    "middleName": "Test",
+    "username": "jim.jones@zionusa.org",
+    "gender": "M",
+    "archived": false,
+    "enabled": true,
+    "theologicalStudent": false,
+    "recoveryEmail": "jim.jones@gmail.com",
+    "access": {
+      "id": 5,
+      "name": "Member",
+      "sortOrder": 5
+    },
+    "role": {
+      "id": 5,
+      "name": "Member",
+      "sortOrder": 5
+    },
+    "title": {
+      "id": 8,
+      "name": "Member",
+      "displayName": "B.",
+      "sortOrder": 8
+    },
+    "gaGrader": false,
+    "teacher": false,
+    "readyGrader": false
+  },
+  {
+    "id": 6,
+    "teamId": 12,
+    "accessId": 4,
+    "roleId": 4,
+    "titleId": 8,
+    "firstName": "Johan",
+    "lastName": "Jamison",
+    "middleName": "Test",
+    "username": "johan.jamison@zionusa.org",
+    "gender": "M",
+    "archived": false,
+    "enabled": true,
+    "theologicalStudent": true,
+    "recoveryEmail": null,
+    "access": {
+      "id": 5,
+      "name": "Member",
+      "sortOrder": 5
+    },
+    "role": {
+      "id": 5,
+      "name": "Member",
+      "sortOrder": 5
+    },
+    "title": {
+      "id": 8,
+      "name": "Member",
+      "displayName": "B.",
+      "sortOrder": 8
+    },
+    "gaGrader": false,
+    "teacher": false,
+    "readyGrader": false
+  }
+]

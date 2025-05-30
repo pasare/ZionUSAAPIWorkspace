@@ -1,0 +1,136 @@
+[
+  {
+    "id": 2,
+    "groupId": 3,
+    "leaderId": null,
+    "name": "Team1",
+    "churchTeam": false,
+    "effectiveDate": "2017-06-19",
+    "leader": {
+      "id": 2,
+      "teamId": 3,
+      "accessId": 4,
+      "roleId": 4,
+      "titleId": 8,
+      "firstName": "Patrick",
+      "lastName": "User",
+      "middleName": "Test",
+      "displayName": "P. Patrick T. User",
+      "username": "patrick.asare@zionusa.org",
+      "gender": "M",
+      "archived": false,
+      "enabled": true,
+      "access": {
+        "id": 5,
+        "name": "Member",
+        "sortOrder": 5
+      },
+      "role": {
+        "id": 5,
+        "name": "Member",
+        "sortOrder": 5
+      },
+      "title": {
+        "id": 8,
+        "name": "Member",
+        "displayName": "B.",
+        "sortOrder": 8
+      }
+    },
+    "members": [
+      {
+        "id": 2,
+        "teamId": 3,
+        "accessId": 4,
+        "roleId": 4,
+        "titleId": 8,
+        "firstName": "Patrick",
+        "lastName": "User",
+        "middleName": "Test",
+        "displayName": "P. Patrick T. User",
+        "username": "patrick.asare@zionusa.org",
+        "gender": "M",
+        "archived": false,
+        "enabled": true,
+        "access": {
+          "id": 5,
+          "name": "Member",
+          "sortOrder": 5
+        },
+        "role": {
+          "id": 5,
+          "name": "Member",
+          "sortOrder": 5
+        },
+        "title": {
+          "id": 8,
+          "name": "Member",
+          "displayName": "B.",
+          "sortOrder": 8
+        }
+      }
+    ],
+    "group": {
+      "id": 3,
+      "churchId": 2,
+      "leaderId": null,
+      "name": "Test Group 1",
+      "churchGroup": false,
+      "archived": false,
+      "effectiveDate": "2017-06-17",
+      "leader": null,
+      "teams": []
+    }
+  },
+  {
+    "id": 3,
+    "groupId": 3,
+    "leaderId": null,
+    "name": "Team2",
+    "churchTeam": false,
+    "effectiveDate": "2017-06-19",
+    "leader": null,
+    "members": [
+      {
+        "id": 2,
+        "teamId": 3,
+        "accessId": 1,
+        "roleId": 1,
+        "titleId": 1,
+        "firstName": "Patrick",
+        "lastName": "User",
+        "middleName": "Test",
+        "displayName": "P. Patrick T. User",
+        "username": "patrick.asare@zionusa.org",
+        "gender": "M",
+        "archived": false,
+        "enabled": true,
+        "access": {
+          "id": 1,
+          "name": "Admin",
+          "sortOrder": 1
+        },
+        "role": {
+          "id": 1,
+          "name": "Overseer",
+          "sortOrder": 1
+        },
+        "title": {
+          "id": 1,
+          "name": "Pastor",
+          "displayName": "P.",
+          "sortOrder": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "groupId": 3,
+    "leaderId": null,
+    "name": "Team4",
+    "churchTeam": true,
+    "effectiveDate": "2017-06-19",
+    "leader": null
+  }
+]

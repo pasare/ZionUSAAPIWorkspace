@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Management Views (TEST)" type="DatabaseScript">
+    <script-file value="$PROJECT_DIR$/ManagementApi/src/main/resources/views/views.sql" />
+    <script-mode>FILE</script-mode>
+    <data-source id="6443deec-6f1b-4998-9000-4e2eb8e65ca0" namespace="database/&quot;zionusa_management_test&quot;/schema/&quot;dbo&quot;" />
+    <method v="2" />
+  </configuration>
+</component>

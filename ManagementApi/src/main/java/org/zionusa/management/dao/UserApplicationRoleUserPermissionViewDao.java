@@ -1,0 +1,7 @@
+package org.zionusa.management.dao;
+
+import org.zionusa.base.dao.BaseApplicationRoleUserPermissionDao;
+import org.zionusa.management.domain.UserApplicationRoleUserPermissionForManagement;
+
+public interface UserApplicationRoleUserPermissionViewDao extends BaseApplicationRoleUserPermissionDao<UserApplicationRoleUserPermissionForManagement> {
+}

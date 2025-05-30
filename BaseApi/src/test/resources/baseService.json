@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "archived": false,
+    "hidden": true,
+    "email": "Test1@gmail.com"
+  },
+  {
+    "id": 2,
+    "archived": false,
+    "hidden": true,
+    "email": "Test2@gmail.com"
+  },
+  {
+    "id": 3,
+    "archived": false,
+    "hidden": false,
+    "email": "Test3@gmail.com"
+  },
+  {
+    "id": 4,
+    "archived": false,
+    "hidden": false,
+    "email": "Test4@gmail.com"
+  },
+  {
+    "id": 5,
+    "archived": true,
+    "hidden": false,
+    "email": "Test5@gmail.com"
+  }
+]

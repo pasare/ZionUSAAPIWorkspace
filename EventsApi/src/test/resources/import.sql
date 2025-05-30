@@ -1,0 +1,540 @@
+--
+-- Security
+--
+
+INSERT INTO applications (id, name, apple_app_store_url, google_play_store_url, icon_title, icon_url, launch_url, unique_id, description, enabled, archived, hidden) VALUES (1, N'Management API Swagger', null, null, N'Management API', null, N'https://managementapi.zionusa.net/swagger-ui.html', N'X-APPLICATION-ID', null, 1, 0, 0);
+
+--
+-- Supporting Views
+--
+
+INSERT INTO event_church_view (id, name, leader_id, state_id) VALUES (1, N'New Windsor', 155, 29);
+
+INSERT INTO event_management_team_view (id, user_id, application_role_name, application_role_id, application_role_reference_id, application_role_display_name, association_id, branch_id, branch_name, display_name, enabled, gender, main_branch_id, parent_branch_id, picture_id, picture_thumbnail_url, role_id, role_name, username) VALUES (N'38-51', 38, N'EVENT_DEFAULT_ADMIN', 51, null, N'Event Admin (COG)', 1, 40, N'New Windsor', N'B. Moon Kang', 1, N'Male', 40, null, 421, N'https://zionusamanagement.blob.core.windows.net/user-pictures-test/38/b.moons.kang-profile-picture_1620351997960-thumb.jpg', 5, N'Member', N'moon.kang@zionusa.org');
+INSERT INTO event_management_team_view (id, user_id, application_role_name, application_role_id, application_role_reference_id, application_role_display_name, association_id, branch_id, branch_name, display_name, enabled, gender, main_branch_id, parent_branch_id, picture_id, picture_thumbnail_url, role_id, role_name, username) VALUES (N'40-61', 40, N'BRANCH_ACCESS', 61, null, N'Church Access', 1, 40, N'New Windsor', N'B. Adrian  Hernandez', 1, N'Male', 40, null, 4, N'https://zionusamanagement.blob.core.windows.net/user-pictures-test/40/b.adrianhernandez-profile-picture_1539544798500-thumb.jpg', 5, N'Member', N'adrian.hernandez@test.zionusa.org');
+
+--
+-- Event Proposals
+--
+
+
+
+-- INSERT INTO contacts (id, created_by, created_date, last_modified_by, last_modified_date, country_region, archived,
+--                       business_office_phone, cell_phone, city, company_name, deletable, email_address, facebook_url,
+--                       first_name, instagram_url, last_name, linked_in_url, picture_url, state_province, title,
+--                       twitter_url)
+-- VALUES (1, 'philip.browning@zionusa.org', '2019-09-04 20:53:00.5290000', 'philip.browning@zionusa.org',
+--         '2019-09-04 20:53:00.5290000', 'USA', 0, '6461234568', '6461234567', 'New York', 'Starbucks', 0,
+--         'john.doe@starbucks.com', 'https://www.facebook.com', 'John', '', 'Doe', '', '', 'New York', 'Manager', '');
+-- INSERT INTO contacts (id, created_by, created_date, last_modified_by, last_modified_date, country_region, archived,
+--                       business_office_phone, cell_phone, city, company_name, deletable, email_address, facebook_url,
+--                       first_name, instagram_url, last_name, linked_in_url, picture_url, state_province, title,
+--                       twitter_url)
+-- VALUES (2, 'Ashley.Gonzalez@zionusa.org', '2019-09-06 14:39:12.2970000', 'Ashley.Gonzalez@zionusa.org',
+--         '2019-09-06 14:39:12.2970000', 'United States', 0, '3154425250', '', 'Syracuse', 'Syracuse Police Department',
+--         0, '', '', 'M', '', 'Jackson', '', '', 'New York', 'Officer', '');
+-- INSERT INTO contacts (id, created_by, created_date, last_modified_by, last_modified_date, country_region, archived,
+--                       business_office_phone, cell_phone, city, company_name, deletable, email_address, facebook_url,
+--                       first_name, instagram_url, last_name, linked_in_url, picture_url, state_province, title,
+--                       twitter_url)
+-- VALUES (1002, null, null, null, null, null, 0, null, null, null, 'Ministry of Youth', 1, null, null, 'Rubiamny ', null,
+--         ' Balcazar ', null, null, null, null, null);
+-- INSERT INTO contacts (id, created_by, created_date, last_modified_by, last_modified_date, country_region, archived,
+--                       business_office_phone, cell_phone, city, company_name, deletable, email_address, facebook_url,
+--                       first_name, instagram_url, last_name, linked_in_url, picture_url, state_province, title,
+--                       twitter_url)
+-- VALUES (1003, null, null, null, null, null, 0, '603-589-3362', null, null, 'City of Nashua', 1, 'Nickc@nashuanh.gov',
+--         null, 'Nicholas', null, ' Caggiano', null, null, null, null, null);
+-- INSERT INTO contacts (id, created_by, created_date, last_modified_by, last_modified_date, country_region, archived,
+--                       business_office_phone, cell_phone, city, company_name, deletable, email_address, facebook_url,
+--                       first_name, instagram_url, last_name, linked_in_url, picture_url, state_province, title,
+--                       twitter_url)
+-- VALUES (1004, null, null, null, null, null, 0, '1868726110', null, null, 'Ministry of Education', 1, null, null,
+--         'Ms Williams', null, ' Williams', null, null, null, null, null);
+--
+-- INSERT INTO locations (id, created_by, created_date, last_modified_by, last_modified_date, abbreviation, address,
+--                        archived, city, country_region, deletable, description, facebook_url, indoor_outdoor,
+--                        instagram_url, linked_in_url, location_name, permit_deadline, permits, point_of_contact_id,
+--                        state_province, twitter_url, zip_postal_code)
+-- VALUES (1, 'philip.browning@zionusa.org', '2019-09-04 20:53:48.0080000', 'philip.browning@zionusa.org',
+--         '2019-09-04 20:53:48.0080000', null, '123 Broadway', 0, 'New York', 'USA', 1, 'Starbucks headquarters', '',
+--         'Indoors', '', '', 'Test Starbucks Headquarters', '', 0, 1, 'New York', '', '10001');
+-- INSERT INTO locations (id, created_by, created_date, last_modified_by, last_modified_date, abbreviation, address,
+--                        archived, city, country_region, deletable, description, facebook_url, indoor_outdoor,
+--                        instagram_url, linked_in_url, location_name, permit_deadline, permits, point_of_contact_id,
+--                        state_province, twitter_url, zip_postal_code)
+-- VALUES (2, null, null, 'fantasia.hunt@zionusa.org', '2019-09-09 17:13:31.9490000', null, '1234 Broadway', 0,
+--         'New Windsor', 'USA', 1, 'Test', null, 'Indoors', null, null, 'Second Test Location', '', 0, 1, 'New York',
+--         null, '12553');
+-- INSERT INTO locations (id, created_by, created_date, last_modified_by, last_modified_date, abbreviation, address,
+--                        archived, city, country_region, deletable, description, facebook_url, indoor_outdoor,
+--                        instagram_url, linked_in_url, location_name, permit_deadline, permits, point_of_contact_id,
+--                        state_province, twitter_url, zip_postal_code)
+-- VALUES (1704, null, null, null, null, null, null, 0, 'Jamaica Bay', null, 1, null, null, null, null, null,
+--         'Jamaica Bay', null, null, null, 'NY', null, null);
+-- INSERT INTO locations (id, created_by, created_date, last_modified_by, last_modified_date, abbreviation, address,
+--                        archived, city, country_region, deletable, description, facebook_url, indoor_outdoor,
+--                        instagram_url, linked_in_url, location_name, permit_deadline, permits, point_of_contact_id,
+--                        state_province, twitter_url, zip_postal_code)
+-- VALUES (1705, null, null, null, null, null, 'TBA', 0, 'Louisville', 'USA', 1, null, null, null, null, null,
+--         'South Hurstbourne Pkwy Neighborhood', null, null, null, 'Kentucky', null, null);
+-- INSERT INTO locations (id, created_by, created_date, last_modified_by, last_modified_date, abbreviation, address,
+--                        archived, city, country_region, deletable, description, facebook_url, indoor_outdoor,
+--                        instagram_url, linked_in_url, location_name, permit_deadline, permits, point_of_contact_id,
+--                        state_province, twitter_url, zip_postal_code)
+-- VALUES (1706, null, null, null, null, null, 'Virginia Beach', 0, 'Virginia Beach ', 'USA', 1, null, null, null, null,
+--         null, 'Virginia Beach Oceanfront', null, null, null, 'Virginia ', null, null);
+--
+-- INSERT INTO organizations (id, created_by, created_date, last_modified_by, last_modified_date, abbreviation, address,
+--                            archived, city, company_main_phone, deletable, department, e_mail, facebook_url,
+--                            instagram_url, linked_in_url, point_of_contact_id, state_province, title, twitter_url,
+--                            university, web_page, zip_postal_code)
+-- VALUES (1, 'philip.browning@zionusa.org', '2019-09-04 20:55:02.1460000', 'philip.browning@zionusa.org',
+--         '2019-09-04 20:55:02.1460000', null, '1234 Farm Road', 0, 'Newburgh', '8451234567', 1, 'Farm Division',
+--         'info@testcoffeebeanfactory.com', '', '', '', 1, 'New York', 'Test Coffee Bean Factory', '', null,
+--         'https://test.coffeebeanfactory.com', '12553');
+-- INSERT INTO organizations (id, created_by, created_date, last_modified_by, last_modified_date, abbreviation, address,
+--                            archived, city, company_main_phone, deletable, department, e_mail, facebook_url,
+--                            instagram_url, linked_in_url, point_of_contact_id, state_province, title, twitter_url,
+--                            university, web_page, zip_postal_code)
+-- VALUES (3, null, null, null, null, null, null, 0, 'Highlands', '+1 732-291-0055', 1, 'Sandy Hook Headquarters Office',
+--         null, null, null, null, null, 'NJ', 'American Litoral Society', null, null, 'Littoral Society', null);
+-- INSERT INTO organizations (id, created_by, created_date, last_modified_by, last_modified_date, abbreviation, address,
+--                            archived, city, company_main_phone, deletable, department, e_mail, facebook_url,
+--                            instagram_url, linked_in_url, point_of_contact_id, state_province, title, twitter_url,
+--                            university, web_page, zip_postal_code)
+-- VALUES (4, null, null, null, null, null, null, 0, 'Shrewsbury', '+1 888-712-5663', 1, null, null, null, null, null,
+--         null, 'NJ', 'Central Jersey Blood Services', null, null, 'Central Jersey Blood Centers', null);
+--
+-- INSERT INTO event_types (id, active, category, title, created_by, created_date, last_modified_by, last_modified_date,
+--                          archived, deletable, event_category_id, default_external_event, default_private_event,
+--                          required_titles)
+-- VALUES (95, 1, 'Social Welfare', 'Elderly Home Visit', null, null, 'philip.browning@zionusa.org',
+--         '2019-06-30 14:12:09.0680000', 0, 1, 1, 1, 1, '[]');
+-- INSERT INTO event_types (id, active, category, title, created_by, created_date, last_modified_by, last_modified_date,
+--                          archived, deletable, event_category_id, default_external_event, default_private_event,
+--                          required_titles)
+-- VALUES (97, 1, 'Smile Campaigndsdsdggg hh', 'Cheering for Sports Competitions', null, null,
+--         'carlo.saavedra@zionusa.org', '2020-02-29 23:05:03.5750000', 0, 1, 1, 1, 1, '[]');
+-- INSERT INTO event_types (id, active, category, title, created_by, created_date, last_modified_by, last_modified_date,
+--                          archived, deletable, event_category_id, default_external_event, default_private_event,
+--                          required_titles)
+-- VALUES (108, 1, 'Disaster Relief', 'Flooding', null, null, 'philip.browning@zionusa.org', '2019-06-30 14:12:25.3680000',
+--         0, 1, 1, 1, 1, '[]');
+-- INSERT INTO event_types (id, active, category, title, created_by, created_date, last_modified_by, last_modified_date,
+--                          archived, deletable, event_category_id, default_external_event, default_private_event,
+--                          required_titles)
+-- VALUES (109, 1, 'Disaster Relief', 'Earthquakes', null, null, 'housley.dankwah@zionusa.org',
+--         '2019-07-27 16:18:32.2810000', 0, 1, 1, 1, 1, '[]');
+-- INSERT INTO event_types (id, active, category, title, created_by, created_date, last_modified_by, last_modified_date,
+--                          archived, deletable, event_category_id, default_external_event, default_private_event,
+--                          required_titles)
+-- VALUES (110, 1, 'Environmental Protection', 'National Park / Forrest', null, null, 'philip.browning@zionusa.org',
+--         '2019-06-30 14:13:47.6010000', 0, 1, 1, 1, 1, '[]');
+--
+-- INSERT INTO event_categories (id, created_by, created_date, last_modified_by, last_modified_date, active, image_url,
+--                               title, description, sub_categories)
+-- VALUES (1, 'philip.browning@zionusa.org', '2019-09-05 00:06:39.0000000', 'philip.browning@zionusa.org',
+--         '2019-09-05 00:06:39.0000000', 1, 'https://zionusaevents.blob.core.windows.net/event-additional-images/WMS.png',
+--         'Church of God',
+--         'The World Mission Society Church of God is a Christian non-denominational church with more than 8,000 locations and 2.7 million registered members in 175 countries. The Church of God believes in Elohim God — God the Father and God the Mother — based on the Bible.',
+--         'Blood Drive,Disaster Relief,Social Welfare,Cleanups');
+-- INSERT INTO event_categories (id, created_by, created_date, last_modified_by, last_modified_date, active, image_url,
+--                               title, description, sub_categories)
+-- VALUES (2, 'philip.browning@zionusa.org', '2019-09-05 00:06:39.0000000', 'philip.browning@zionusa.org',
+--         '2019-09-05 00:06:39.0000000', 1,
+--         'https://zionusaevents.blob.core.windows.net/event-additional-images/ASEZ.png', 'ASEZ',
+--         'ASEZ is a group of university student volunteers from the Church of God, who act to solve practical problems around the world.',
+--         'Forums,Tabling,Disaster Relief,Blood Drive');
+-- INSERT INTO event_categories (id, created_by, created_date, last_modified_by, last_modified_date, active, image_url,
+--                               title, description, sub_categories)
+-- VALUES (3, 'philip.browning@zionusa.org', '2019-09-05 00:06:39.0000000', 'philip.browning@zionusa.org',
+--         '2019-09-05 00:06:39.0000000', 1,
+--         'https://zionusaevents.blob.core.windows.net/event-additional-images/ASEZ WAO.png', 'ASEZ WAO',
+--         'It is a global volunteer group of young adult workers of the Church of God to take care of neighbors and communities and to protect the environment with joy and enthusiasm. ASEZ WAO means "Save the Earth from A to Z," and “We Are One.',
+--         'Forum,Initiatives,Cleanups,Tabling,Disaster Relief');
+-- INSERT INTO event_categories (id, created_by, created_date, last_modified_by, last_modified_date, active, image_url,
+--                               title, description, sub_categories)
+-- VALUES (4, null, null, null, null, 1, null, 'Internal', '', 'Seminar, Social, Welcome Festival');
+--
+-- INSERT INTO event_itinerary (id, created_by, created_date, last_modified_by, last_modified_date, itinerary_detail1,
+--                              itinerary_detail2, itinerary_detail3, itinerary_detail4, itinerary_detail5,
+--                              itinerary_detail6, itinerary_detail7, itinerary_detail8, itinerary_time1, itinerary_time2,
+--                              itinerary_time3, itinerary_time4, itinerary_time5, itinerary_time6, itinerary_time7,
+--                              itinerary_time8)
+-- VALUES (1, null, null, 'philip.browning@zionusa.org', '2019-09-06 16:39:03.8170000', 'Departure to the event location',
+--         'Arrival at the event location', 'Main activity 1', 'Main 2', '', '', 'Departure from the event location',
+--         'End of the Event', '7:30 AM', '8:00 PM', '7:30 AM', '7:00 AM', '', '', '', '');
+-- INSERT INTO event_itinerary (id, created_by, created_date, last_modified_by, last_modified_date, itinerary_detail1,
+--                              itinerary_detail2, itinerary_detail3, itinerary_detail4, itinerary_detail5,
+--                              itinerary_detail6, itinerary_detail7, itinerary_detail8, itinerary_time1, itinerary_time2,
+--                              itinerary_time3, itinerary_time4, itinerary_time5, itinerary_time6, itinerary_time7,
+--                              itinerary_time8)
+-- VALUES (2, null, null, 'philip.browning@zionusa.org', '2020-02-04 01:35:33.2490000', 'Departure to the event location',
+--         'Arrival at the event location', '', '', '', '', 'Departure from the event location', 'End of the Event', '',
+--         '', '', '', '', '', '', '');
+-- INSERT INTO event_itinerary (id, created_by, created_date, last_modified_by, last_modified_date, itinerary_detail1,
+--                              itinerary_detail2, itinerary_detail3, itinerary_detail4, itinerary_detail5,
+--                              itinerary_detail6, itinerary_detail7, itinerary_detail8, itinerary_time1, itinerary_time2,
+--                              itinerary_time3, itinerary_time4, itinerary_time5, itinerary_time6, itinerary_time7,
+--                              itinerary_time8)
+-- VALUES (3, 'Danielle.Cadet@zionusa.org', '2019-09-06 16:14:23.6890000', 'Danielle.Cadet@zionusa.org',
+--         '2019-09-06 16:14:23.6890000', 'Departure to the event location', 'Arrival at the event location', '', '', '',
+--         '', 'Departure from the event location', 'End of the Event', '', '', '', '', '', '', '', '');
+-- INSERT INTO event_itinerary (id, created_by, created_date, last_modified_by, last_modified_date, itinerary_detail1,
+--                              itinerary_detail2, itinerary_detail3, itinerary_detail4, itinerary_detail5,
+--                              itinerary_detail6, itinerary_detail7, itinerary_detail8, itinerary_time1, itinerary_time2,
+--                              itinerary_time3, itinerary_time4, itinerary_time5, itinerary_time6, itinerary_time7,
+--                              itinerary_time8)
+-- VALUES (4, null, null, 'philip.browning@zionusa.org', '2019-09-16 19:37:53.5860000', 'Departure to the event location',
+--         'Arrival at the event location', '', '', '', '', 'Departure from the event location', 'End of the Event', '',
+--         '', '', '', '', '', '', '');
+-- INSERT INTO event_itinerary (id, created_by, created_date, last_modified_by, last_modified_date, itinerary_detail1,
+--                              itinerary_detail2, itinerary_detail3, itinerary_detail4, itinerary_detail5,
+--                              itinerary_detail6, itinerary_detail7, itinerary_detail8, itinerary_time1, itinerary_time2,
+--                              itinerary_time3, itinerary_time4, itinerary_time5, itinerary_time6, itinerary_time7,
+--                              itinerary_time8)
+-- VALUES (5, null, null, 'Kimberly.White@zionusa.org', '2019-09-06 20:11:26.0490000',
+--         'We will all move together on campus ', 'We will arrive 30 mins early so we can set up ', 'Start the Event ',
+--         'Education ', 'Painting and Pot ', '', 'Picture and clean up ', 'Clean up and say goodbye ', '6:00 PM',
+--         '6:30 AM', '7:00 PM', '8:00 PM', '8:00 AM', '', '8:30 PM', '8:30 PM');
+--
+-- INSERT INTO event_logistics (id, created_by, created_date, last_modified_by, last_modified_date, another_branch_help,
+--                              banner_budget, food_budget, food_details, gas_budget, gas_details, indoor_outdoor,
+--                              insurance_required, misc_budget, misc_details, our_items, our_services,
+--                              partner_organization_budget, partner_organization_budget_donated,
+--                              partner_organization_budget_sponsor, partner_organization_items,
+--                              partner_organization_services, scouting, supplies_budget, supplies_details,
+--                              transportation_budget, transportation_detail, transportation_type,
+--                              registration_redirect_url, request_newsletter_subscription, requesttshirt_size,
+--                              donation_message)
+-- VALUES (1, null, null, 'philip.browning@zionusa.org', '2019-09-06 16:39:03.8180000', 1, 120, 60, null, 50, null,
+--         'Indoors', 1, 55, 'misc', 'Our people', 'Our spirit', 1, 250, 200, 'Some items we know', 'Some services', 1, 40,
+--         null, 45, null, null, null, null, null, null);
+-- INSERT INTO event_logistics (id, created_by, created_date, last_modified_by, last_modified_date, another_branch_help,
+--                              banner_budget, food_budget, food_details, gas_budget, gas_details, indoor_outdoor,
+--                              insurance_required, misc_budget, misc_details, our_items, our_services,
+--                              partner_organization_budget, partner_organization_budget_donated,
+--                              partner_organization_budget_sponsor, partner_organization_items,
+--                              partner_organization_services, scouting, supplies_budget, supplies_details,
+--                              transportation_budget, transportation_detail, transportation_type,
+--                              registration_redirect_url, request_newsletter_subscription, requesttshirt_size,
+--                              donation_message)
+-- VALUES (2, null, null, 'philip.browning@zionusa.org', '2020-02-04 01:35:33.2490000', 0, null, null, null, null, null,
+--         null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+--         null, null, null);
+-- INSERT INTO event_logistics (id, created_by, created_date, last_modified_by, last_modified_date, another_branch_help,
+--                              banner_budget, food_budget, food_details, gas_budget, gas_details, indoor_outdoor,
+--                              insurance_required, misc_budget, misc_details, our_items, our_services,
+--                              partner_organization_budget, partner_organization_budget_donated,
+--                              partner_organization_budget_sponsor, partner_organization_items,
+--                              partner_organization_services, scouting, supplies_budget, supplies_details,
+--                              transportation_budget, transportation_detail, transportation_type,
+--                              registration_redirect_url, request_newsletter_subscription, requesttshirt_size,
+--                              donation_message)
+-- VALUES (3, 'Danielle.Cadet@zionusa.org', '2019-09-06 16:14:23.6920000', 'Danielle.Cadet@zionusa.org',
+--         '2019-09-06 16:14:23.7140000', 0, null, null, null, null, null, null, null, null, null, null, null, null, null,
+--         null, null, null, null, null, null, null, null, null, null, null, null, null);
+-- INSERT INTO event_logistics (id, created_by, created_date, last_modified_by, last_modified_date, another_branch_help,
+--                              banner_budget, food_budget, food_details, gas_budget, gas_details, indoor_outdoor,
+--                              insurance_required, misc_budget, misc_details, our_items, our_services,
+--                              partner_organization_budget, partner_organization_budget_donated,
+--                              partner_organization_budget_sponsor, partner_organization_items,
+--                              partner_organization_services, scouting, supplies_budget, supplies_details,
+--                              transportation_budget, transportation_detail, transportation_type,
+--                              registration_redirect_url, request_newsletter_subscription, requesttshirt_size,
+--                              donation_message)
+-- VALUES (4, null, null, 'philip.browning@zionusa.org', '2019-09-16 19:37:53.5860000', 0, null, null, null, null, null,
+--         null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+--         null, null, null);
+-- INSERT INTO event_logistics (id, created_by, created_date, last_modified_by, last_modified_date, another_branch_help,
+--                              banner_budget, food_budget, food_details, gas_budget, gas_details, indoor_outdoor,
+--                              insurance_required, misc_budget, misc_details, our_items, our_services,
+--                              partner_organization_budget, partner_organization_budget_donated,
+--                              partner_organization_budget_sponsor, partner_organization_items,
+--                              partner_organization_services, scouting, supplies_budget, supplies_details,
+--                              transportation_budget, transportation_detail, transportation_type,
+--                              registration_redirect_url, request_newsletter_subscription, requesttshirt_size,
+--                              donation_message)
+-- VALUES (5, null, null, 'Kimberly.White@zionusa.org', '2019-09-06 20:11:26.0500000', 0, 200, 50, 'we will order pizza ',
+--         0, 'we will not be driving as all students live on campus ', 'Indoors', 0, null, null,
+--         'we will provide education and food ', 'we will not provide services ', 0, 30, 100,
+--         'They will provide pots and plants ', 'they will not provide services ', 1, 20, 'we will provide markers ', 0,
+--         'N/A', 'N/A', null, null, null, null);
+--
+-- INSERT INTO event_marketing (id, created_by, created_date, last_modified_by, last_modified_date,
+--                              additional_banner_details, advertising, advertising_website, advertising_why_not,
+--                              banner_mount, banners, flyer_assistance, follow_up_event_description, follow_up_event_name,
+--                              invitation_strategy, making_flyer, materials_options, allow_fundraising)
+-- VALUES (1, null, null, 'philip.browning@zionusa.org', '2019-09-06 16:39:03.8190000', null, 1, null, null, null, 9, 1,
+--         null, null, null, null, null, null);
+-- INSERT INTO event_marketing (id, created_by, created_date, last_modified_by, last_modified_date,
+--                              additional_banner_details, advertising, advertising_website, advertising_why_not,
+--                              banner_mount, banners, flyer_assistance, follow_up_event_description, follow_up_event_name,
+--                              invitation_strategy, making_flyer, materials_options, allow_fundraising)
+-- VALUES (2, null, null, 'philip.browning@zionusa.org', '2020-02-04 01:35:33.2490000', null, null, null, null, null, null,
+--         null, null, null, null, null, null, null);
+-- INSERT INTO event_marketing (id, created_by, created_date, last_modified_by, last_modified_date,
+--                              additional_banner_details, advertising, advertising_website, advertising_why_not,
+--                              banner_mount, banners, flyer_assistance, follow_up_event_description, follow_up_event_name,
+--                              invitation_strategy, making_flyer, materials_options, allow_fundraising)
+-- VALUES (3, 'Danielle.Cadet@zionusa.org', '2019-09-06 16:14:23.6940000', 'Danielle.Cadet@zionusa.org',
+--         '2019-09-06 16:14:23.6940000', null, null, null, null, null, null, null, null, null, null, null, null, null);
+-- INSERT INTO event_marketing (id, created_by, created_date, last_modified_by, last_modified_date,
+--                              additional_banner_details, advertising, advertising_website, advertising_why_not,
+--                              banner_mount, banners, flyer_assistance, follow_up_event_description, follow_up_event_name,
+--                              invitation_strategy, making_flyer, materials_options, allow_fundraising)
+-- VALUES (4, null, null, 'philip.browning@zionusa.org', '2019-09-16 19:37:53.5860000', null, null, null, null, null, null,
+--         null, null, null, null, null, null, null);
+-- INSERT INTO event_marketing (id, created_by, created_date, last_modified_by, last_modified_date,
+--                              additional_banner_details, advertising, advertising_website, advertising_why_not,
+--                              banner_mount, banners, flyer_assistance, follow_up_event_description, follow_up_event_name,
+--                              invitation_strategy, making_flyer, materials_options, allow_fundraising)
+-- VALUES (5, null, null, 'Kimberly.White@zionusa.org', '2019-09-06 20:11:26.0500000', 'there are no other details ', 1, 1,
+--         null, 'standing banner stand ', 2, 0, null, null, 'we will post around campus ', 1, null, null);
+--
+-- INSERT INTO event_public_relations (id, created_by, created_date, last_modified_by, last_modified_date, media,
+--                                     media_name, media_status, media_why_not, partner_media,
+--                                     public_relations_assigned_id, spokesperson_assigned_id, vip_ids, vip_why_not,
+--                                     writer_assigned_id)
+-- VALUES (1, null, null, 'philip.browning@zionusa.org', '2019-09-06 16:39:03.8190000', null, null, null, null, null, null,
+--         null, null, null, null);
+-- INSERT INTO event_public_relations (id, created_by, created_date, last_modified_by, last_modified_date, media,
+--                                     media_name, media_status, media_why_not, partner_media,
+--                                     public_relations_assigned_id, spokesperson_assigned_id, vip_ids, vip_why_not,
+--                                     writer_assigned_id)
+-- VALUES (2, null, null, 'philip.browning@zionusa.org', '2020-02-04 01:35:33.2490000', null, null, null, null, null, null,
+--         null, null, null, null);
+-- INSERT INTO event_public_relations (id, created_by, created_date, last_modified_by, last_modified_date, media,
+--                                     media_name, media_status, media_why_not, partner_media,
+--                                     public_relations_assigned_id, spokesperson_assigned_id, vip_ids, vip_why_not,
+--                                     writer_assigned_id)
+-- VALUES (3, 'Danielle.Cadet@zionusa.org', '2019-09-06 16:14:23.6970000', 'Danielle.Cadet@zionusa.org',
+--         '2019-09-06 16:14:23.6970000', null, null, null, null, null, null, null, null, null, null);
+-- INSERT INTO event_public_relations (id, created_by, created_date, last_modified_by, last_modified_date, media,
+--                                     media_name, media_status, media_why_not, partner_media,
+--                                     public_relations_assigned_id, spokesperson_assigned_id, vip_ids, vip_why_not,
+--                                     writer_assigned_id)
+-- VALUES (4, null, null, 'philip.browning@zionusa.org', '2019-09-16 19:37:53.5860000', null, null, null, null, null, null,
+--         null, null, null, null);
+-- INSERT INTO event_public_relations (id, created_by, created_date, last_modified_by, last_modified_date, media,
+--                                     media_name, media_status, media_why_not, partner_media,
+--                                     public_relations_assigned_id, spokesperson_assigned_id, vip_ids, vip_why_not,
+--                                     writer_assigned_id)
+-- VALUES (5, null, null, 'Kimberly.White@zionusa.org', '2019-09-06 20:11:26.0510000', 1, 'CBS', 'No response yet ', null,
+--         null, null, null, null, null, null);
+--
+-- INSERT INTO event_tech_support (id, created_by, created_date, last_modified_by, last_modified_date,
+--                                 additional_audio_person, additional_photo_person, additional_video_person,
+--                                 audio_visual_allowed, audio_visual_assigned_id, performances, photo_allowed,
+--                                 photo_video_before, photographer_assigned_id, setup_help, stage_needed,
+--                                 tent_banner_number, tent_needed, tent_used, video_allowed, videographer_assigned_id)
+-- VALUES (1, null, null, 'philip.browning@zionusa.org', '2019-09-06 16:39:03.8190000', null, null, null, null, null, null,
+--         null, null, null, null, null, 0, null, null, null, null);
+-- INSERT INTO event_tech_support (id, created_by, created_date, last_modified_by, last_modified_date,
+--                                 additional_audio_person, additional_photo_person, additional_video_person,
+--                                 audio_visual_allowed, audio_visual_assigned_id, performances, photo_allowed,
+--                                 photo_video_before, photographer_assigned_id, setup_help, stage_needed,
+--                                 tent_banner_number, tent_needed, tent_used, video_allowed, videographer_assigned_id)
+-- VALUES (2, null, null, 'philip.browning@zionusa.org', '2020-02-04 01:35:33.2490000', null, null, null, null, null, null,
+--         null, null, null, null, null, 0, null, null, null, null);
+-- INSERT INTO event_tech_support (id, created_by, created_date, last_modified_by, last_modified_date,
+--                                 additional_audio_person, additional_photo_person, additional_video_person,
+--                                 audio_visual_allowed, audio_visual_assigned_id, performances, photo_allowed,
+--                                 photo_video_before, photographer_assigned_id, setup_help, stage_needed,
+--                                 tent_banner_number, tent_needed, tent_used, video_allowed, videographer_assigned_id)
+-- VALUES (3, 'Danielle.Cadet@zionusa.org', '2019-09-06 16:14:23.7010000', 'Danielle.Cadet@zionusa.org',
+--         '2019-09-06 16:14:23.7010000', null, null, null, null, null, null, null, null, null, null, null, 0, null, null,
+--         null, null);
+-- INSERT INTO event_tech_support (id, created_by, created_date, last_modified_by, last_modified_date,
+--                                 additional_audio_person, additional_photo_person, additional_video_person,
+--                                 audio_visual_allowed, audio_visual_assigned_id, performances, photo_allowed,
+--                                 photo_video_before, photographer_assigned_id, setup_help, stage_needed,
+--                                 tent_banner_number, tent_needed, tent_used, video_allowed, videographer_assigned_id)
+-- VALUES (4, null, null, 'philip.browning@zionusa.org', '2019-09-16 19:37:53.5860000', null, null, null, null, null, null,
+--         null, null, null, null, null, 0, null, null, null, null);
+-- INSERT INTO event_tech_support (id, created_by, created_date, last_modified_by, last_modified_date,
+--                                 additional_audio_person, additional_photo_person, additional_video_person,
+--                                 audio_visual_allowed, audio_visual_assigned_id, performances, photo_allowed,
+--                                 photo_video_before, photographer_assigned_id, setup_help, stage_needed,
+--                                 tent_banner_number, tent_needed, tent_used, video_allowed, videographer_assigned_id)
+-- VALUES (5, null, null, 'Kimberly.White@zionusa.org', '2019-09-06 20:11:26.0510000', 0, 0, 0, 1, 2333, 0, 1, 0, 2412, 0,
+--         0, 0, null, 0, 1, 2394);
+--
+-- INSERT INTO event_status (id, created_by, created_date, last_modified_by, last_modified_date,
+--                           actual_admin_decision_date, actual_ga_decision_date, actual_manager_decision_date,
+--                           admin_approved, admin_notes, archived, event_proposal_id, expected_admin_approval_date,
+--                           expected_ga_approval_date, expected_manager_approval_date, finalized, finalized_date,
+--                           ga_approved, ga_notes, ga_submitted, manager_approved, manager_notes, needs_revision,
+--                           requester_id, started, started_date)
+-- VALUES (1, 'philip.browning@zionusa.org', '2019-09-04 23:14:33.1410000', 'philip.browning@zionusa.org',
+--         '2019-09-04 23:14:33.1410000', null, null, null, null, null, 0, 1, '2019-09-25', '2019-10-05', '2019-09-15',
+--         null, null, null, null, null, null, null, null, 37, 1, '2019-09-04');
+-- INSERT INTO event_status (id, created_by, created_date, last_modified_by, last_modified_date,
+--                           actual_admin_decision_date, actual_ga_decision_date, actual_manager_decision_date,
+--                           admin_approved, admin_notes, archived, event_proposal_id, expected_admin_approval_date,
+--                           expected_ga_approval_date, expected_manager_approval_date, finalized, finalized_date,
+--                           ga_approved, ga_notes, ga_submitted, manager_approved, manager_notes, needs_revision,
+--                           requester_id, started, started_date)
+-- VALUES (2, 'Ashley.Gonzalez@zionusa.org', '2019-09-05 20:12:01.1830000', 'Ashley.Gonzalez@zionusa.org',
+--         '2019-09-05 20:12:01.1830000', null, null, null, null, null, 0, 2, '2019-09-25', '2019-10-05', '2019-09-15',
+--         null, null, null, null, null, null, null, null, 777, 1, '2019-09-05');
+-- INSERT INTO event_status (id, created_by, created_date, last_modified_by, last_modified_date,
+--                           actual_admin_decision_date, actual_ga_decision_date, actual_manager_decision_date,
+--                           admin_approved, admin_notes, archived, event_proposal_id, expected_admin_approval_date,
+--                           expected_ga_approval_date, expected_manager_approval_date, finalized, finalized_date,
+--                           ga_approved, ga_notes, ga_submitted, manager_approved, manager_notes, needs_revision,
+--                           requester_id, started, started_date)
+-- VALUES (3, 'Danielle.Cadet@zionusa.org', '2019-09-06 11:29:41.9190000', 'Danielle.Cadet@zionusa.org',
+--         '2019-09-06 11:29:41.9190000', null, null, null, null, null, 0, 3, '2019-09-26', '2019-10-06', '2019-09-16',
+--         null, null, null, null, null, null, null, null, 891, 1, '2019-09-06');
+-- INSERT INTO event_status (id, created_by, created_date, last_modified_by, last_modified_date,
+--                           actual_admin_decision_date, actual_ga_decision_date, actual_manager_decision_date,
+--                           admin_approved, admin_notes, archived, event_proposal_id, expected_admin_approval_date,
+--                           expected_ga_approval_date, expected_manager_approval_date, finalized, finalized_date,
+--                           ga_approved, ga_notes, ga_submitted, manager_approved, manager_notes, needs_revision,
+--                           requester_id, started, started_date)
+-- VALUES (4, 'Oliver.Rodriguez@zionusa.org', '2019-09-06 18:21:47.6090000', 'Oliver.Rodriguez@zionusa.org',
+--         '2019-09-06 18:21:47.6090000', null, null, null, null, null, 0, 4, '2019-09-26', '2019-10-06', '2019-09-16',
+--         null, null, null, null, null, null, null, null, 969, 1, '2019-09-06');
+-- INSERT INTO event_status (id, created_by, created_date, last_modified_by, last_modified_date,
+--                           actual_admin_decision_date, actual_ga_decision_date, actual_manager_decision_date,
+--                           admin_approved, admin_notes, archived, event_proposal_id, expected_admin_approval_date,
+--                           expected_ga_approval_date, expected_manager_approval_date, finalized, finalized_date,
+--                           ga_approved, ga_notes, ga_submitted, manager_approved, manager_notes, needs_revision,
+--                           requester_id, started, started_date)
+-- VALUES (5, 'Kimberly.White@zionusa.org', '2019-09-06 19:40:44.9920000', 'Kimberly.White@zionusa.org',
+--         '2019-09-06 19:40:44.9920000', null, null, null, null, null, 0, 5, '2019-09-26', '2019-10-06', '2019-09-16',
+--         null, null, null, null, null, null, null, null, 2348, 1, '2019-09-06');
+--
+-- INSERT INTO event_proposals (id, archived, branch_id, branch_name, description, event_type_id, late_submission_reason,
+--                              location_id, location_name, event_status_id, event_itinerary_id, event_marketing_id,
+--                              event_public_relations_id, event_tech_support_id, created_by, created_date,
+--                              last_modified_by, last_modified_date, informational_proposal, proposed_date,
+--                              proposed_end_date, proposed_end_time, proposed_time, purpose, title, workflow_status,
+--                              requester_id, additional_details, partner_organization_id, partner_organization_why_not,
+--                              partner_organization_involved, additional_attire, contacts_total, members_total,
+--                              other_participating_branches, vips_total, our_attire, event_category_id,
+--                              intro_video_reaction, intro_video_shown, presentation_materials, deletable,
+--                              university_school_id, background_url, logo_url, event_logistics_id, event_proposal_id,
+--                              is_internal, is_private, editor_id, editor_name, published_date, is_published)
+-- VALUES (1, 0, 35, 'Tampa', 'This is the description of the cool event', 83, null, 87, 'City of Doral ', 1, 1, null, 1,
+--         null, null, null, 'patrick.asare@zionusa.org', '2019-06-29 22:32:58.4020000', 0, '2019-06-10', '2019-06-10',
+--         '10:00 PM', '9:00 AM', 'This is the purpose of the cool event', 'A Cool Event', 'Admin Approved', 28,
+--         'No additional details needed for this cool event.', null, null, null, null, null, null, null, null, null, null,
+--         null, null, null, 1, null, null, null, 1, null, 0, 0, null, null, null, 0);
+-- INSERT INTO event_proposals (id, archived, branch_id, branch_name, description, event_type_id, late_submission_reason,
+--                              location_id, location_name, event_status_id, event_itinerary_id, event_marketing_id,
+--                              event_public_relations_id, event_tech_support_id, created_by, created_date,
+--                              last_modified_by, last_modified_date, informational_proposal, proposed_date,
+--                              proposed_end_date, proposed_end_time, proposed_time, purpose, title, workflow_status,
+--                              requester_id, additional_details, partner_organization_id, partner_organization_why_not,
+--                              partner_organization_involved, additional_attire, contacts_total, members_total,
+--                              other_participating_branches, vips_total, our_attire, event_category_id,
+--                              intro_video_reaction, intro_video_shown, presentation_materials, deletable,
+--                              university_school_id, background_url, logo_url, event_logistics_id, event_proposal_id,
+--                              is_internal, is_private, editor_id, editor_name, published_date, is_published)
+-- VALUES (2, 0, null, 'Miami', null, 95, null, null, 'Miami Zion;#237', 7, 6, null, 5, null, null, null,
+--         'philip.browning@zionusa.org', '2019-06-19 20:26:12.9880000', null, '2019-07-01', null, null, null, null,
+--         'Passover Blood Drive ', 'Submitted', 36, null, null, null, null, null, 0, 0, null, 0, null, null, null, null,
+--         null, 1, null, null, null, 1, null, 0, 0, null, null, null, 0);
+-- INSERT INTO event_proposals (id, archived, branch_id, branch_name, description, event_type_id, late_submission_reason,
+--                              location_id, location_name, event_status_id, event_itinerary_id, event_marketing_id,
+--                              event_public_relations_id, event_tech_support_id, created_by, created_date,
+--                              last_modified_by, last_modified_date, informational_proposal, proposed_date,
+--                              proposed_end_date, proposed_end_time, proposed_time, purpose, title, workflow_status,
+--                              requester_id, additional_details, partner_organization_id, partner_organization_why_not,
+--                              partner_organization_involved, additional_attire, contacts_total, members_total,
+--                              other_participating_branches, vips_total, our_attire, event_category_id,
+--                              intro_video_reaction, intro_video_shown, presentation_materials, deletable,
+--                              university_school_id, background_url, logo_url, event_logistics_id, event_proposal_id,
+--                              is_internal, is_private, editor_id, editor_name, published_date, is_published)
+-- VALUES (3, 0, null, 'Newport News', 'asdfasdfasdf', 83, null, 88, 'Admiral Mason Veterans Memorial Park', 8, 7, null, 6,
+--         null, null, null, 'housley.dankwah@zionusa.org', '2020-01-05 18:59:44.5540000', null, '2019-10-22',
+--         '2019-09-22', '6:30 AM', '7:00 AM', 'asdfasdf', 'ASEZ Forum ', 'Admin Approved', 28, null, 141, null, 1, null,
+--         100, 36, null, 164, null, 3, null, null, null, 1, null,
+--         'https://zionusaevents.blob.core.windows.net/event-additional-images-test/3-1578250782.jpg', null, 1, null, 0,
+--         0, null, null, null, 0);
+-- INSERT INTO event_proposals (id, archived, branch_id, branch_name, description, event_type_id, late_submission_reason,
+--                              location_id, location_name, event_status_id, event_itinerary_id, event_marketing_id,
+--                              event_public_relations_id, event_tech_support_id, created_by, created_date,
+--                              last_modified_by, last_modified_date, informational_proposal, proposed_date,
+--                              proposed_end_date, proposed_end_time, proposed_time, purpose, title, workflow_status,
+--                              requester_id, additional_details, partner_organization_id, partner_organization_why_not,
+--                              partner_organization_involved, additional_attire, contacts_total, members_total,
+--                              other_participating_branches, vips_total, our_attire, event_category_id,
+--                              intro_video_reaction, intro_video_shown, presentation_materials, deletable,
+--                              university_school_id, background_url, logo_url, event_logistics_id, event_proposal_id,
+--                              is_internal, is_private, editor_id, editor_name, published_date, is_published)
+-- VALUES (7, 0, null, 'Central Jersey', 'Descript', 70, null, 97, 'Northern Onondaga Public Library - Cicero', 15, 12,
+--         null, 11, null, null, null, 'philip.browning@zionusa.org', '2019-06-06 18:34:05.4060000', null, '2019-06-16',
+--         '2019-06-16', '1:00 PM', '12:00 PM', 'This is the purpose',
+--         'World Mission Society Church Of God Blood Drive for the Passover ', null, 37, null, 57, null, 1, null, null,
+--         null, null, null, null, null, null, null, null, 1, null, null, null, 1, null, 0, 0, null, null, null, 0);
+-- INSERT INTO event_proposals (id, archived, branch_id, branch_name, description, event_type_id, late_submission_reason,
+--                              location_id, location_name, event_status_id, event_itinerary_id, event_marketing_id,
+--                              event_public_relations_id, event_tech_support_id, created_by, created_date,
+--                              last_modified_by, last_modified_date, informational_proposal, proposed_date,
+--                              proposed_end_date, proposed_end_time, proposed_time, purpose, title, workflow_status,
+--                              requester_id, additional_details, partner_organization_id, partner_organization_why_not,
+--                              partner_organization_involved, additional_attire, contacts_total, members_total,
+--                              other_participating_branches, vips_total, our_attire, event_category_id,
+--                              intro_video_reaction, intro_video_shown, presentation_materials, deletable,
+--                              university_school_id, background_url, logo_url, event_logistics_id, event_proposal_id,
+--                              is_internal, is_private, editor_id, editor_name, published_date, is_published)
+-- VALUES (8, 1, null, 'Bronx', 'Cleanup', 91, null, 88, 'Admiral Mason Veterans Memorial Park', 16, 13, null, 12, null,
+--         null, null, 'housley.dankwah@zionusa.org', '2020-01-25 21:43:33.1800000', null, '2019-03-31', '2019-03-31',
+--         '11:30 AM', '10:00 AM', 'Street cleanup for ASEZ mission', 'ASEZ Passover Clean up ', null, 37, null, 119, null,
+--         1, null, 0, 0, null, 0, null, null, null, null, null, 1, null, null, null, 1, null, 0, 0, null, null, null, 0);
+--
+-- INSERT INTO event_teams (created_by, created_date, last_modified_by, last_modified_date, archived, deletable, admin_ids,
+--                          audio_visual_engineer_ids, ga_ids, graphic_designer_ids, manager_ids, photographer_ids,
+--                          public_relations_representative_ids, videographer_ids, branch_id, event_representative_ids)
+-- VALUES (null, null, null, null, 0, 1, '36, 37', '36', '36', '36', '36', '36', '36', '36', 40, '36');
+-- INSERT INTO event_teams (created_by, created_date, last_modified_by, last_modified_date, archived, deletable, admin_ids,
+--                          audio_visual_engineer_ids, ga_ids, graphic_designer_ids, manager_ids, photographer_ids,
+--                          public_relations_representative_ids, videographer_ids, branch_id, event_representative_ids)
+-- VALUES ('housley.dankwah@zionusa.org', '2019-05-19 15:17:54.7870000', 'housley.dankwah@zionusa.org',
+--         '2019-05-19 15:17:54.7870000', 0, 1, '4818, 3650', '', null, null, null, null, null, null, 1, null);
+-- INSERT INTO event_teams (created_by, created_date, last_modified_by, last_modified_date, archived, deletable, admin_ids,
+--                          audio_visual_engineer_ids, ga_ids, graphic_designer_ids, manager_ids, photographer_ids,
+--                          public_relations_representative_ids, videographer_ids, branch_id, event_representative_ids)
+-- VALUES (null, null, 'housley.dankwah@zionusa.org', '2020-01-21 02:30:07.1130000', 0, 1, '4818, 3650', '4813',
+--         '4814, 3812', '3319, 4815', '4815', '3649, 4837, 4835', '173', '248, 135, 413, 865', 179, '4816');
+-- INSERT INTO event_teams (created_by, created_date, last_modified_by, last_modified_date, archived, deletable, admin_ids,
+--                          audio_visual_engineer_ids, ga_ids, graphic_designer_ids, manager_ids, photographer_ids,
+--                          public_relations_representative_ids, videographer_ids, branch_id, event_representative_ids)
+-- VALUES ('housley.dankwah@zionusa.org', '2019-07-27 12:49:16.6880000', 'housley.dankwah@zionusa.org',
+--         '2019-07-27 12:49:16.6880000', 0, 1, '4831', '', '4831', '', '4817', '', '', '', 171, '4826');
+-- INSERT INTO event_teams (created_by, created_date, last_modified_by, last_modified_date, archived, deletable, admin_ids,
+--                          audio_visual_engineer_ids, ga_ids, graphic_designer_ids, manager_ids, photographer_ids,
+--                          public_relations_representative_ids, videographer_ids, branch_id, event_representative_ids)
+-- VALUES (null, null, 'carlo.saavedra@zionusa.org', '2019-09-01 20:24:43.4050000', 0, 1, '4838', '4836', '4835', '3624',
+--         '3803', '4835', '3565', '', 182, '3201');
+--
+-- INSERT INTO event_fundraising (created_by, created_date, last_modified_by, last_modified_date, approved, approved_by,
+--                                approved_date, archived, description, event_id, goal, picture_url, sub_title,
+--                                user_display_name, user_id)
+-- VALUES ('philip.browning@zionusa.org', '2020-02-19 23:58:52.2220000', 'philip.browning@zionusa.org',
+--         '2020-02-20 02:32:56.3430000', 0, null, null, 0, 'string', 1930, 0, 'string', 'Full Moon', 'Moon Kang', 38);
+-- INSERT INTO event_fundraising (created_by, created_date, last_modified_by, last_modified_date, approved, approved_by,
+--                                approved_date, archived, description, event_id, goal, picture_url, sub_title,
+--                                user_display_name, user_id)
+-- VALUES ('philip.browning@zionusa.org', '2020-02-19 23:58:52.2220000', 'philip.browning@zionusa.org',
+--         '2020-02-20 00:34:04.3360000', 1, 37, '2020-01-12', 0, 'string', 1930, 0, 'string', 'string', 'Patrick Asare',
+--         36);
+-- INSERT INTO event_fundraising (created_by, created_date, last_modified_by, last_modified_date, approved, approved_by,
+--                                approved_date, archived, description, event_id, goal, picture_url, sub_title,
+--                                user_display_name, user_id)
+-- VALUES (null, null, 'philip.browning@zionusa.org', '2020-02-24 02:31:01.1740000', 1, 37, '2020-02-13', 0,
+--         'string asdf asdf asdf asdf', 1908, 10000, 'string', 'S. Bristol Gunderson', 'S. Bristol Gunderson', 1000);
+-- INSERT INTO event_fundraising (created_by, created_date, last_modified_by, last_modified_date, approved, approved_by,
+--                                approved_date, archived, description, event_id, goal, picture_url, sub_title,
+--                                user_display_name, user_id)
+-- VALUES (null, null, 'patrick.asare@zionusa.org', '2020-02-24 02:08:33.5730000', 0, null, null, 0, 'string', 1908, 254,
+--         'string', 'Another Way to Contribute to Society', 'Philip Browning', 37);
+-- INSERT INTO event_fundraising (created_by, created_date, last_modified_by, last_modified_date, approved, approved_by,
+--                                approved_date, archived, description, event_id, goal, picture_url, sub_title,
+--                                user_display_name, user_id)
+-- VALUES (null, null, 'patrick.asare@zionusa.org', '2020-02-24 01:49:18.4590000', 0, null, null, 0, 'string', 1908, 2300,
+--         'string', 'King of Wakanda', 'Housley Dankwah', 39);

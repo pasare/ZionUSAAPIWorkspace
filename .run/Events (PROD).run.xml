@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Events (PROD)" type="SpringBootApplicationConfigurationType"
+                 factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="production, validate"/>
+    <module name="org.zionusa.zionusa-api-workspace.EventsApi.main"/>
+    <option name="SPRING_BOOT_MAIN_CLASS" value="org.zionusa.event.EventsApiApplication"/>
+    <option name="VM_PARAMETERS" value="-Xmx512m"/>
+    <method v="2">
+      <option name="Make" enabled="true"/>
+    </method>
+  </configuration>
+</component>

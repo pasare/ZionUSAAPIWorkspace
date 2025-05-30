@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "name": "Overseer",
+    "sortOrder": 1,
+    "archived": false,
+    "hidden": false
+  },
+  {
+    "id": 2,
+    "name": "Church Leader",
+    "sortOrder": 2,
+    "archived": false,
+    "hidden": false
+  },
+  {
+    "id": 3,
+    "name": "Group Leader",
+    "sortOrder": 3,
+    "archived": false,
+    "hidden": false
+  },
+  {
+    "id": 4,
+    "name": "Team Leader",
+    "sortOrder": 4,
+    "archived": false,
+    "hidden": false
+  },
+  {
+    "id": 5,
+    "name": "Member",
+    "sortOrder": 5,
+    "archived": false,
+    "hidden": false
+  },
+  {
+    "id": 6,
+    "name": "Archived",
+    "sortOrder": 6,
+    "archived": true,
+    "hidden": false
+  },
+  {
+    "id": 7,
+    "name": "Hidden",
+    "sortOrder": 7,
+    "archived": true,
+    "hidden": true
+  }
+]

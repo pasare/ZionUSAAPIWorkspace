@@ -1,0 +1,89 @@
+#!groovy
+
+
+stage('Build Preaching') {
+    script {
+        if (isUnix()) {
+            sh 'gradle clean build --warn'
+        } else {
+            bat 'gradle clean build --warn'
+        }
+    }
+}
+if (env.BRANCH_NAME == 'development') {
+    stage('Stop Preaching Service') {
+        script {
+            try {
+                if (isUnix()) {
+                } else {
+                    bat 'C:/inetpub/wwwroot/API/ZionUSAPreachingApi/PreachingApi.exe stop'
+                }
+                sleep(10)
+            } catch (Exception e) {
+                echo 'Could not stop the Preaching Service';
+            }
+        }
+    }
+
+    stage('Deploy Preaching Dev') {
+        script {
+            if (isUnix()) {
+            } else {
+                fileOperations([
+                        fileCopyOperation(
+                                excludes: '',
+                                flattenFiles: true,
+                                includes: 'build/libs/PreachingApi.jar',
+                                targetLocation: "C:/inetpub/wwwroot/API/ZionUSAPreachingApi"
+                        ),
+                        fileCopyOperation(
+                                excludes: '',
+                                flattenFiles: true,
+                                includes: 'build/resources/main/web.config',
+                                targetLocation: "C:/inetpub/wwwroot/API/ZionUSAPreachingApi"
+                        ),
+                        fileCopyOperation(
+                                excludes: '',
+                                flattenFiles: true,
+                                includes: 'build/resources/main/jenkins/PreachingApi.exe',
+                                targetLocation: "C:/inetpub/wwwroot/API/ZionUSAPreachingApi"
+                        )
+                ])
+                fileOperations([
+                        fileCopyOperation(
+                                excludes: '',
+                                flattenFiles: true,
+                                includes: 'build/resources/main/jenkins/test/PreachingApi.xml',
+                                targetLocation: "C:/inetpub/wwwroot/API/ZionUSAPreachingApi"
+                        )
+                ])
+            }
+        }
+    }
+
+    stage('Start Preaching Dev Service') {
+        script {
+            if (isUnix()) {
+            } else {
+                bat 'C:/inetpub/wwwroot/API/ZionUSAPreachingApi/PreachingApi.exe start'
+            }
+        }
+    }
+}
+
+if (env.BRANCH_NAME == 'master') {
+    stage('Upload Preaching Prod') {
+        ftpPublisher alwaysPublishFromMaster: true, continueOnError: false, failOnError: true, masterNodeName: '',
+                paramPublish: null, publishers: [
+                [configName             : 'Dev to Prod FTP', transfers: [
+                        [
+                                asciiMode               : false, cleanRemote: false, excludes: '', flatten: true, makeEmptyDirs:
+                                false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "buildPreachingAPIFiles",
+                                remoteDirectorySDF      : false, sourceFiles:
+                                        'build/resources/main/jenkins/production/PreachingApi' +
+                                                '.xml, build/libs/PreachingApi.jar, build/resources/main/web.config, build/resources/main/jenkins/PreachingApi.exe'
+                        ]
+                ], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]
+        ]
+    }
+}

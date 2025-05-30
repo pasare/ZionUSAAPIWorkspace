@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Temple",
+    "sortOrder": 1
+  },
+  {
+    "id": 2,
+    "name": "Office Church",
+    "sortOrder": 2
+  },
+  {
+    "id": 3,
+    "name": "House Church",
+    "sortOrder": 3
+  },
+  {
+    "id": 4,
+    "name": "Study Location",
+    "sortOrder": 4
+  }
+]

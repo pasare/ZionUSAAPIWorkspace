@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Admin",
+    "sort_order": 1,
+    "archived": false,
+    "hidden": false
+  },
+  {
+    "id": 2,
+    "name": "Church",
+    "sort_order": 3,
+    "archived": false,
+    "hidden": false
+  },
+  {
+    "id": 3,
+    "name": "Group",
+    "sort_order": 4,
+    "archived": false,
+    "hidden": false
+  },
+  {
+    "id": 4,
+    "name": "Team",
+    "sort_order": 5,
+    "archived": false,
+    "hidden": false
+  },
+  {
+    "id": 5,
+    "name": "Member",
+    "sort_order": 6,
+    "archived": false,
+    "hidden": false
+  },
+  {
+    "id": 6,
+    "name": "Overseer",
+    "sort_order": 2,
+    "archived": false,
+    "hidden": false
+  },
+  {
+    "id": 7,
+    "name": "Archived",
+    "sort_order": 7,
+    "archived": true,
+    "hidden": false
+  },
+  {
+    "id": 8,
+    "name": "Hidden",
+    "sort_order": 8,
+    "archived": true,
+    "hidden": true
+  }
+]

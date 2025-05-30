@@ -1,0 +1,122 @@
+def deployFiles(configName, remoteDirectory, sourceFiles) {
+  ftpPublisher alwaysPublishFromMaster: true,
+    continueOnError: false,
+    failOnError: true,
+    masterNodeName: "",
+    paramPublish: null,
+    publishers: [
+      [
+        configName: configName,
+        transfers: [
+          [
+            asciiMode: false,
+            cleanRemote: false,
+            excludes: "",
+            flatten: true,
+            makeEmptyDirs: false,
+            noDefaultExcludes: false,
+            patternSeparator: "[, ]+",
+            remoteDirectory: remoteDirectory,
+            remoteDirectorySDF: false,
+            sourceFiles: sourceFiles
+          ]
+        ],
+        usePromotionTimestamp: false,
+        useWorkspaceInPromotion: false,
+        verbose: true
+      ]
+    ]
+}
+
+def getCommandOutput(cmd) {
+  if (isUnix()) {
+    return sh(returnStdout:true , script: '#!/bin/sh -e\n' + cmd).trim()
+  } else {
+    stdout = bat(returnStdout:true , script: cmd).trim()
+    result = stdout.readLines().drop(1).join(" ")
+    return result
+  }
+}
+
+def runCommand(cmd) {
+  if (isUnix()) {
+    sh(script: cmd)
+  } else {
+    bat(script: cmd)
+  }
+}
+
+stage("Build (Admin)") {
+  script {
+    runCommand("gradle clean build --warn")
+  }
+}
+
+stage("Deploy (Admin)") {
+  script {
+    if (env.BRANCH_NAME == "development") {
+      try {
+        if (isUnix()) {
+
+        } else {
+          bat "C:/inetpub/wwwroot/API/ZionUSAAdminApi/AdminApi.exe stop"
+        }
+        sleep(10)
+      } catch (Exception e) {
+        echo "Could not stop the Admin Service";
+      }
+
+      if (isUnix()) {
+
+      } else {
+        fileOperations([
+          fileCopyOperation(
+            excludes: "",
+            flattenFiles: true,
+            includes: "build/libs/AdminApi.jar",
+            targetLocation: "${DEPLOY_ROOT}/API/ZionUSAAdminApi"
+          ),
+          fileCopyOperation(
+            excludes: "",
+            flattenFiles: true,
+            includes: "build/resources/main/web.config",
+            targetLocation: "${DEPLOY_ROOT}/API/ZionUSAAdminApi"
+          ),
+          fileCopyOperation(
+            excludes: "",
+            flattenFiles: true,
+            includes: "build/resources/main/jenkins/AdminApi.exe",
+            targetLocation: "${DEPLOY_ROOT}/API/ZionUSAAdminApi"
+          )
+        ])
+        fileOperations([
+          fileCopyOperation(
+            excludes: "",
+            flattenFiles: true,
+            includes: "build/resources/main/jenkins/test/AdminApi.xml",
+            targetLocation: "${DEPLOY_ROOT}/API/ZionUSAAdminApi"
+          )
+        ])
+      }
+
+      if (isUnix()) {
+
+      } else {
+        bat "${DEPLOY_ROOT}/API/ZionUSAAdminApi/AdminApi.exe start"
+      }
+    }
+
+    if (env.BRANCH_NAME == "master") {
+      deployFiles(
+        "Dev to Prod FTP",
+        "./buildAdminAPIFiles",
+        (
+          "build/resources/main/jenkins/production/AdminApi.xml, " +
+          "build/libs/AdminApi.jar, " +
+          "build/resources/main/web.config, " +
+          "build/resources/main/jenkins/AdminApi.exe"
+        )
+      )
+    }
+  }
+}

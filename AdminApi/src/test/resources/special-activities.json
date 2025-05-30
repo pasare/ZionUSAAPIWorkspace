@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Father's Ascension Day",
+    "date": "2021-02-16",
+    "timeOfDay": "M",
+    "orderId": 1,
+    "weight": 1
+  },
+  {
+    "id": 2,
+    "name": "Father's Ascension Day",
+    "date": "2021-02-16",
+    "timeOfDay": "M",
+    "orderId": 2,
+    "weight": 1
+  },
+  {
+    "id": 3,
+    "name": "Father's Ascension Day",
+    "date": "2021-02-16",
+    "timeOfDay": "M",
+    "orderId": 3,
+    "weight": 1
+  },
+  {
+    "id": 4,
+    "name": "Father's Ascension Day",
+    "date": "2021-02-16",
+    "timeOfDay": "A",
+    "orderId": 1,
+    "weight": 1
+  },
+  {
+    "id": 4,
+    "name": "Test Required Time Weekday",
+    "date": "2021-02-18",
+    "timeOfDay": "E",
+    "orderId": 1,
+    "weight": 1
+  },
+  {
+    "id": 4,
+    "name": "Test Required Time Sabbath Afternoon",
+    "date": "2021-02-20",
+    "timeOfDay": "A",
+    "orderId": 1,
+    "weight": 1
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "id": 4,
+    "branchId": 40,
+    "adminIds": "36, 37",
+    "managerIds": "36",
+    "gaIds": "36",
+    "eventRepresentativeIds": "36",
+    "photographerIds": "36",
+    "videographerIds": "36",
+    "graphicDesignerIds": "36",
+    "audioVisualEngineerIds": "36",
+    "publicRelationsRepresentativeIds": "36",
+    "archived": false,
+    "deletable": true
+  },
+  {
+    "id": 8,
+    "branchId": 1,
+    "adminIds": "4818, 3650",
+    "audioVisualEngineerIds": "",
+    "archived": false,
+    "deletable": true
+  },
+  {
+    "id": 9,
+    "branchId": 2,
+    "adminIds": "4818, 3650",
+    "archived": false,
+    "deletable": true
+  },
+  {
+    "id": 10,
+    "branchId": 3,
+    "adminIds": "4818, 3650",
+    "archived": false,
+    "deletable": true
+  },
+  {
+    "id": 11,
+    "branchId": 177,
+    "adminIds": "4818, 3650",
+    "managerIds": "",
+    "gaIds": "",
+    "eventRepresentativeIds": "",
+    "photographerIds": "",
+    "videographerIds": "",
+    "graphicDesignerIds": "",
+    "audioVisualEngineerIds": "",
+    "publicRelationsRepresentativeIds": "",
+    "archived": false,
+    "deletable": true
+  }
+]

@@ -1,0 +1,13 @@
+def runCommand(cmd) {
+  if (isUnix()) {
+    sh(script: cmd)
+  } else {
+    bat(script: cmd)
+  }
+}
+
+stage("Build (Base)") {
+  script {
+    runCommand("gradle clean build --warn")
+  }
+}

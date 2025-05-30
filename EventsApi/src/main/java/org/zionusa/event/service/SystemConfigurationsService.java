@@ -1,0 +1,29 @@
+package org.zionusa.event.service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.zionusa.base.service.BaseService;
+import org.zionusa.event.dao.SystemConfigurationsDao;
+import org.zionusa.event.domain.SystemConfiguration;
+
+import java.util.List;
+
+@Service
+public class SystemConfigurationsService extends BaseService<SystemConfiguration, Integer> {
+    private static final Logger logger = LoggerFactory.getLogger(SystemConfigurationsService.class);
+
+    private final SystemConfigurationsDao systemConfigurationsDao;
+
+    @Autowired
+    public SystemConfigurationsService(SystemConfigurationsDao systemConfigurationsDao) {
+        super(systemConfigurationsDao, logger, SystemConfiguration.class);
+        this.systemConfigurationsDao = systemConfigurationsDao;
+    }
+
+    public List<SystemConfiguration> getByCategory(String category) {
+        return systemConfigurationsDao.getAllByCategory(category);
+    }
+
+}
