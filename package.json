@@ -1,0 +1,8 @@
+{
+  "name": "zionusa-api-workspace",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "branch-clean": "git branch | egrep -v \"(master|development|\\*)\" | xargs git branch -D"
+  }
+}
